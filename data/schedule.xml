@@ -29,7 +29,6 @@ and open the template in the editor.
     </by_time>
     <by_course>
         <book_course number="ACIT4910">
-            
             <this_week day="Monday">
                 <blocks time="15:30" />
                 <detail instructor="Richard" room="SW9-206" type="" dur="1"/>
