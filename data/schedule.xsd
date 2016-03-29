@@ -90,4 +90,72 @@
             <xs:attribute name="type" type="Stype" use="required" />
             <xs:attribute name="dur" type="Sdur" use="required" />
         </xs:complexType>
+        
+
+<!-- for time facet -->
+        <xs:complexType name="Sbytime">
+            <xs:sequence>
+                <xs:element name="book_time" type="Sbtime" maxOccurs="5"/>
+            </xs:sequence>
+        </xs:complexType>
+            
+        <xs:complexType name="Sbtime">
+            <xs:sequence>
+                <xs:element name="week_day" type="Swday" maxOccurs="5"/>
+            </xs:sequence>
+            <xs:attribute name="time" type="Stime" use="required" />
+        </xs:complexType>
+        
+        <xs:complexType name="Swday">
+            <xs:sequence>
+                <xs:element name="course" type="Stcourse" maxOccurs="1"/>
+                <xs:element name="detail" type="Stdetail" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="day" type="Sday" use="required" />
+        </xs:complexType>
+        
+        <xs:complexType name="Stcourse">
+            <xs:attribute name="number" type="Scourse" use="required" />
+        </xs:complexType>
+        
+        <xs:complexType name="Stdetail">
+            <xs:attribute name="instructor" type="Sins" use="required" />
+            <xs:attribute name="room" type="Sroom" use="optional" />
+            <xs:attribute name="type" type="Stype" use="required" />
+            <xs:attribute name="dur" type="Sdur" use="required" />
+        </xs:complexType>
+
+<!-- for course facet -->
+        <xs:complexType name="Sbycourse">
+            <xs:sequence>
+                <xs:element name="book_course" type="Sbcourse" maxOccurs="5"/>
+            </xs:sequence>
+        </xs:complexType>
+            
+        <xs:complexType name="Sbcourse">
+            <xs:sequence>
+                <xs:element name="this_week" type="Stday" maxOccurs="5"/>
+            </xs:sequence>
+            <xs:attribute name="number" type="Scourse" use="required" />
+        </xs:complexType>
+        
+        <xs:complexType name="Stday">
+            <xs:sequence>
+                <xs:element name="blocks" type="Scblocks" maxOccurs="1"/>
+                <xs:element name="detail" type="Scdetail" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="day" type="Sday" use="required" />
+        </xs:complexType>
+        
+        <xs:complexType name="Scblocks">
+            <xs:attribute name="time" type="Stime" use="required" />
+        </xs:complexType>
+        
+        <xs:complexType name="Scdetail">
+            <xs:attribute name="instructor" type="Sins" use="required" />
+            <xs:attribute name="room" type="Sroom" use="optional" />
+            <xs:attribute name="type" type="Stype" use="required" />
+            <xs:attribute name="dur" type="Sdur" use="required" />
+        </xs:complexType>
+
 </xs:schema>
