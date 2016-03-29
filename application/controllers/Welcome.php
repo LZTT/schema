@@ -19,72 +19,22 @@ class Welcome extends Application{
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	function __construct() {
-            parent::__construct();
-		$this->load->model('timetable'); 
+            parent::__construct(); 
 	}
         
-        function index() {
-        // Build a list of items,not used in our case
-        $this->load->helper('directory');
-        $candidates = directory_map(DATAPATH);
-        sort($candidates);
-        foreach ($candidates as $file) {
-            if (substr_compare($file, XMLSUFFIX, strlen($file) - strlen(XMLSUFFIX), strlen(XMLSUFFIX)) === 0)
-            // exclude our menu
-                if ($file != 'menu.xml')
-                // trim the suffix
-                    $orders[] = array('filename' => substr($file, 0, -4));
-        }
-        $this->data['orders'] = $orders;
-
-        // Present the home page
-        $this->data['pagebody'] = 'homepage';
-        $this->render();
-    }
-    
-    function aDay($filename) {
-        // Build a receipt for the day facet
-        $slot = new Timetable($filename);
-        $this->data['filename'] = $filename;
-        
-        $collection = '';
-        foreach($slot->byDay() as $items){
-            $collection .= $this->parser->parse('facet',$items, TRUE);
-        }
-        
-        $this->data['details'] = $collection; 
-        $this->data['pagebody'] = 'justone';
-        $this->render();
-    }
-    
-    function aTime($filename) {
-        // Build a receipt for the time facet
-        $slot = new Timetable($filename);
-        $this->data['filename'] = $filename;
-        
-        $collection = '';
-        foreach($slot->byTime() as $items){
-            $collection .= $this->parser->parse('facet',$items, TRUE);
-        }
-        
-        $this->data['details'] = $collection; 
-        $this->data['pagebody'] = 'justone';
-        $this->render();
-    }
-    
-    function aCourse($filename) {
-        // Build a receipt for the course facet
-        $slot = new Timetable($filename);
-        $this->data['filename'] = $filename;
-        
-        $collection = '';
-        foreach($slot->byCourse() as $items){
-            $collection .= $this->parser->parse('facet',$items, TRUE);
-        }
-        
-        $this->data['details'] = $collection; 
-        $this->data['pagebody'] = 'justone';
-        $this->render();
-    }
+        function index()
+	{
+		$this->data['pagebody'] = 'homepage';	// this is the view we want shown
+		// build the list of authors, to pass on to our view
+		$doc = new DOMDocument();
+                $doc->load('data/schedule.xml');;
+                if($doc->schemaValidate('data/schedule.xsd')){
+                    $this->data['debug'] = 'True. This xsd is validated.';
+                }
+                else{
+                    $this->data['debug'] = 'Error';
+                }
+		$this->render();
+	}
 }
 

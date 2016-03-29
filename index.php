@@ -6,7 +6,8 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
+<<<<<<< OURS
+ * Copyright (c) 2014 - 2015, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +29,10 @@
  *
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://codeigniter.com
+ * @link	http://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
  */
@@ -90,15 +91,15 @@ switch (ENVIRONMENT)
 }
 
 /*
- *---------------------------------------------------------------
+ * ---------------------------------------------------------------
  * SYSTEM FOLDER NAME
- *---------------------------------------------------------------
+ * ---------------------------------------------------------------
  *
  * This variable must contain the name of your "system" folder.
  * Include the path if the folder is not in the same directory
  * as this file.
  */
-	$system_path = 'system';
+$system_path = '../system3';
 
 /*
  *---------------------------------------------------------------
@@ -109,7 +110,7 @@ switch (ENVIRONMENT)
  * folder than the default one you can set its name here. The folder
  * can also be renamed or relocated anywhere on your server. If
  * you do, use a full server path. For more info please see the user guide:
- * https://codeigniter.com/user_guide/general/managing_apps.html
+ * http://codeigniter.com/user_guide/general/managing_apps.html
  *
  * NO TRAILING SLASH!
  */
@@ -225,7 +226,7 @@ switch (ENVIRONMENT)
 	define('BASEPATH', str_replace('\\', '/', $system_path));
 
 	// Path to the front controller (this file)
-	define('FCPATH', dirname(__FILE__).'/');
+	define('FCPATH', str_replace(SELF, '', __FILE__));
 
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
@@ -290,3 +291,6 @@ switch (ENVIRONMENT)
  * And away we go...
  */
 require_once BASEPATH.'core/CodeIgniter.php';
+
+/* End of file index.php */
+/* Location: ./index.php */
