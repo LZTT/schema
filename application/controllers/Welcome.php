@@ -21,5 +21,20 @@ class Welcome extends Application{
 	function __construct() {
             parent::__construct(); 
 	}
+        
+        function index()
+	{
+		$this->data['pagebody'] = 'homepage';	// this is the view we want shown
+		// build the list of authors, to pass on to our view
+		$doc = new DOMDocument();
+                $doc->load('data/schedule.xml');;
+                if($doc->schemaValidate('data/schedule.xsd')){
+                    $this->data['debug'] = 'True. This xsd is validated.';
+                }
+                else{
+                    $this->data['debug'] = 'Error';
+                }
+		$this->render();
+	}
 }
 
