@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- data types -->
+<!-- time data -->
+    <xs:simpleType name="Stime">
+        <xs:restriction base="xs:integer">
+            <xs:pattern value="[0-2][0-9][0-5][0-9]" />
+        </xs:restriction>
+    </xs:simpleType>  
+      
+<!-- course data -->
+    <xs:simpleType name="Scourse">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="ACIT[1-4][0-9][0-9][0-9]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+<!-- day of week -->
+    <xs:simpleType name="Sday">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Monday"/>
+            <xs:enumeration value="Tuesday"/>
+            <xs:enumeration value="Wednesday"/>
+            <xs:enumeration value="Thursday"/>
+            <xs:enumeration value="Friday"/>
+        </xs:restriction>
+    </xs:simpleType>
+        
+<!-- instructor data -->        
+        <xs:simpleType name="Sins">
+            <xs:restriction base="xs:string"/>
+        </xs:simpleType>   
+<!-- room data --> 
+        <xs:simpleType name="Sroom">
+            <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+<!-- type data --> 
+        <xs:simpleType name="Stype">
+            <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+<!-- duration data--> 
+        <xs:simpleType name="Sdur">
+            <xs:restriction base="xs:integer">
+                <xs:pattern value="[0-2]" />
+            </xs:restriction>
+        </xs:simpleType>
+
+<!-- a schedule contains a bunch of origin elements -->
+    <xs:element name="schedule">
+        <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="by_day" type="Sbyday" maxOccurs="1"/>
+                    <xs:element name="by_time" type="Sbytime" maxOccurs="1"/>
+                    <xs:element name="by_course" type="Sbycourse" maxOccurs="1"/>
+                </xs:sequence>
+            </xs:complexType>
+    </xs:element>
+
+  <!-- for day facet -->
+        <xs:complexType name="Sbyday">
+            <xs:sequence>
+                <xs:element name="book_day" type="Sbday" maxOccurs="5"/>
+            </xs:sequence>
+        </xs:complexType>
+            
+        <xs:complexType name="Sbday">
+            <xs:sequence>
+                <xs:element name="class_time" type="Sctime" maxOccurs="5"/>
+            </xs:sequence>
+            <xs:attribute name="day" type="Sday" use="required" />
+        </xs:complexType>
+        
+        <xs:complexType name="Sctime">
+            <xs:sequence>
+                <xs:element name="the_course" type="Sdcourse" maxOccurs="1"/>
+                <xs:element name="detail" type="Sddetail" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="time" type="Stime" use="required" />
+        </xs:complexType>
+        
+        <xs:complexType name="Sdcourse">
+            <xs:attribute name="number" type="Scourse" use="required" />
+        </xs:complexType>
+        
+        <xs:complexType name="Sddetail">
+            <xs:attribute name="instructor" type="Sins" use="required" />
+            <xs:attribute name="room" type="Sroom" use="optional" />
+            <xs:attribute name="type" type="Stype" use="required" />
+            <xs:attribute name="dur" type="Sdur" use="required" />
+        </xs:complexType>
+</xs:schema>
