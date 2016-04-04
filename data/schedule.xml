@@ -2,8 +2,26 @@
 <schedule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="schedule.xsd">
   <by_day> 
+        <book_day day="Monday" >
+            <class_time time="0930">
+                <the_course number="ACIT4850" />
+                <detail instructor="Jim" room="SW3-1750" type="" dur="2"/>
+            </class_time>
+        </book_day>
+        <book_day day="Tuesday" >
+            <class_time time="1130">
+                <the_course number="ACIT4850" />
+                <detail instructor="Jim" room="SW3-1750" type="" dur="2"/>
+            </class_time>
+        </book_day>
         <book_day day="Wednesday" >
             <class_time time="1230">
+                <the_course number="ACIT4850" />
+                <detail instructor="Jim" room="SW3-1750" type="" dur="2"/>
+            </class_time>
+        </book_day>
+         <book_day day="Friday" >
+            <class_time time="1430">
                 <the_course number="ACIT4850" />
                 <detail instructor="Jim" room="SW3-1750" type="" dur="2"/>
             </class_time>
@@ -16,6 +34,16 @@ xsi:noNamespaceSchemaLocation="schedule.xsd">
                 <detail instructor="Bethany" room="SE12-306" type="" dur="2"/>
             </week_day>
             <week_day day="Friday">
+                <course number="ACIT4660" />
+                <detail instructor="Steve" room="SW9-206" type="" dur="2"/>
+            </week_day>
+        </book_time>
+        <book_time time="1530">
+            <week_day day="Monday">
+                <course number="ACIT4620" />
+                <detail instructor="Bethany" room="SE12-306" type="" dur="2"/>
+            </week_day>
+            <week_day day="Wednesday">
                 <course number="ACIT4660" />
                 <detail instructor="Steve" room="SW9-206" type="" dur="2"/>
             </week_day>
