@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--
+    TODO define vocabulary identification data
+    PUBLIC ID  : -//vendor//vocabulary//EN
+    SYSTEM ID  : http://server/path/__NAME__
+-->
+
+<!-- the root -->
+<!ELEMENT schedule (by_day*, by_time*, by_course*)>
+
+<!-- booking by day -->
+<!ELEMENT by_day (book_day)>
+
+<!ELEMENT book_day (time_of_day*)>
+<!ATTLIST book_day 
+    day (Monday|Tuesday|Wednesday|Thursday|Friday) #REQUIRED>
+
+<!ELEMENT time_of_day (class_time,the_course,detail)>
+<!ELEMENT class_time EMPTY>
+<!ATTLIST class_time
+    time (8:30|9:30|10:30|11:30|12:30|13:30|14:30|15:30|16:30) #REQUIRED>
+
+<!ELEMENT the_course EMPTY>
+<!ATTLIST the_course 
+        number (ACIT4660|ACIT4850|ACIT4910|ACIT4620) #IMPLIED>
+
+<!ELEMENT detail EMPTY>
+<!ATTLIST detail 
+        instructor (Jim|Medhat|Steve|Bethany|Richard) #IMPLIED
+        room CDATA #IMPLIED
+>
+
+<!-- booking by time-->
+<!ELEMENT by_time (book_time)>
+
+<!ELEMENT book_time (day_of_week*)>
+<!ATTLIST book_time 
+    time (8:30|9:30|10:30|11:30|12:30|13:30|14:30|15:30|16:30) #REQUIRED>
+
+<!ELEMENT day_of_week (week_day,course,detail)>
+<!ELEMENT week_day EMPTY>
+<!ATTLIST week_day 
+    day (Monday|Tuesday|Wednesday|Thursday|Friday) #REQUIRED>
+
+<!ELEMENT course EMPTY>
+<!ATTLIST course 
+        number (ACIT4660|ACIT4850|ACIT4910|ACIT4620) #IMPLIED>
+
+<!-- booking by course-->
+<!ELEMENT by_course (book_course)>
+
+<!ELEMENT book_course (time_block*)>
+<!ATTLIST book_course 
+        number (ACIT4660|ACIT4850|ACIT4910|ACIT4620) #REQUIRED>
+
+<!ELEMENT time_block (this_week,blocks,detail)>
+<!ELEMENT this_week EMPTY>
+<!ATTLIST this_week 
+    day (Monday|Tuesday|Wednesday|Thursday|Friday) #REQUIRED>
+
+<!ELEMENT blocks EMPTY>
+<!ATTLIST blocks 
+    time (8:30|9:30|10:30|11:30|12:30|13:30|14:30|15:30|16:30) #IMPLIED>
+
