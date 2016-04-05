@@ -29,7 +29,7 @@
             </body>
         </html>
     </xsl:template>
-    <!-- creating a list of time to fill the top-->
+    
     <xsl:template name="top-time">
         <tr>
             <th>Day\Time</th>
@@ -44,7 +44,7 @@
             <th>16:30</th>
         </tr>
     </xsl:template>
-    <!-- seperate by day -->
+    
     <xsl:template match="book_day">
         <tr>
             <td>
